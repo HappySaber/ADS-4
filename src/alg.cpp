@@ -1,28 +1,4 @@
 // Copyright 2021 NNTU-CS
-int countPairs1(int *arr, int len, int value) {
-  int count = 0;
-  for (int i = 0; i < len-1; i++) {
-    for (int j = i + 1; j < len; j++) {
-      if (arr[i] + arr[j] == value)
-          count++;
-    }
-  }
-    return count;
-}
-
-int countPairs2(int* arr, int len, int value) {
-    int count = 0;
-    int j, i;
-    for (int i = 0; i < len - 1; i++) {
-      for (int j = len - 1; j > i; j--) {
-        if (arr[i] + arr[j] == value)
-            count++;
-      }
-      if (j - i == 1 && ((arr[j] + arr[i]) > value)) return count;
-    }
-    return count;
-}
-
 int binarniypoisk(int* arr, int lens, int value) {
     int r = 0;
     int s = 0;
@@ -53,6 +29,30 @@ int binarniypoisk(int* arr, int lens, int value) {
     }
     }
     return r;
+}
+
+int countPairs1(int *arr, int len, int value) {
+  int count = 0;
+  for (int i = 0; i < len-1; i++) {
+    for (int j = i + 1; j < len; j++) {
+      if (arr[i] + arr[j] == value)
+          count++;
+    }
+  }
+    return count;
+}
+
+int countPairs2(int* arr, int len, int value) {
+    int count = 0;
+    int j, i;
+    for (int i = 0; i < len - 1; i++) {
+      for (int j = i + 1; len && arr[i] + arr[j] <= value; j++) {
+        if (arr[i] + arr[j] == value)
+            count++;
+      }
+      if (j - i == 1 && ((arr[j] + arr[i]) > value)) return count;
+    }
+    return count;
 }
 
 int countPairs3(int* arr, int len, int value) {
