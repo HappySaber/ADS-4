@@ -1,3 +1,4 @@
+// Copyright 2021 NNTU-CS
 int binarniypoisk(int* arr, int lens, int value) {
     int r = 0;
     int s = 0;
