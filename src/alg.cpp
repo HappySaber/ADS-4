@@ -1,33 +1,33 @@
-int cbinsearch(int* arr, int size, int value) {
-int res = 0;
-int start = 0;
-int end = size - 1;
-while (start <= end) {
-int middle = (start + end) / 2;
-if (*(arr + middle) == value) {
-res += 1;
-int middle1 = middle;
-if (middle != size - 1) {
-while ((*(arr + middle + 1)) == value) {
-res += 1;
-middle += 1;
-}
-}
-if (middle1) {
-while ((*(arr + middle1 - 1)) == value) {
-res += 1;
-middle1 -= 1;
-if (middle1 == 0) break;
-}
-}
-return res;
-} else if (*(arr + middle) > value) {
-end = middle - 1;
-} else {
-start = middle + 1;
-}
-}
-return res;
+int binarniypoisk(int* arr, int lens, int value) {
+    int r = 0;
+    int s = 0;
+    int e = lens - 1;
+    while (s <= e) {
+    int mid = (s + e) / 2;
+    if ((arr[mid]) == value) {
+        r += 1;
+        int mid2 = mid;
+        if (mid != lens - 1) {
+          while (((arr[mid] + 1)) == value) {
+            r += 1;
+            mid += 1;
+          }
+        }
+        if (mid2) {
+          while ((arr[mid2] - 1) == value) {
+            r += 1;
+            mid2 -= 1;
+            if (mid2 == 0) break;
+          }
+        }
+        return r;
+    } else if (arr[mid] > value) {
+        e = mid - 1;
+    } else {
+        s = mid + 1;
+    }
+    }
+    return r;
 }
 
 int countPairs1(int* arr, int len, int value) {
@@ -54,6 +54,6 @@ return count;
 int countPairs3(int* arr, int len, int value) {
 int count = 0;
 for (int i = 0; i < len - 1 && arr[i] <= value; i++)
-count += cbinsearch(arr + i + 1, len - i - 1, value - arr[i]);
+count += binarniypoisk(arr + i + 1, len - i - 1, value - arr[i]);
 return count;
 }
