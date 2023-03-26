@@ -1,4 +1,3 @@
-// Copyright 2021 NNTU-CS
 int binarniypoisk(int* arr, int lens, int value) {
     int r = 0;
     int s = 0;
@@ -31,16 +30,16 @@ int binarniypoisk(int* arr, int lens, int value) {
     return r;
 }
 
-int countPairs1(int *arr, int len, int value) {
-  int coun = 0;
-  for (int i = 0; i < len-1; i++) {
+int countPairs1(int* arr, int len, int value) {
+    int count = 0;
+    for (int i = 0; i < len - 1; i++) {
     for (int j = i + 1; j < len; j++) {
-      if (arr[i] + arr[j] == value)
-          coun++;
+        if (*(arr + i) + *(arr + j) == value) count += 1;
     }
-  }
-    return coun;
+    }
+    return count;
 }
+
 int countPairs2(int* arr, int len, int value) {
     int count = 0;
     int j;
@@ -55,6 +54,6 @@ int countPairs2(int* arr, int len, int value) {
 int countPairs3(int* arr, int len, int value) {
     int count = 0;
     for (int i = 0; i < len - 1 && arr[i] <= value; i++)
-      count += binarniypoisk(arr + i + 1, len - i - 1, value - arr[i]);
+        count += binarniypoisk(arr + i + 1, len - i - 1, value - arr[i]);
     return count;
 }
