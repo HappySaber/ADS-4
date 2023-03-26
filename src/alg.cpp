@@ -5,18 +5,18 @@ int binarniypoisk(int* arr, int lens, int value) {
     while (s <= e) {
     int mid = (s + e) / 2;
     if ((arr[mid]) == value) {
-        r += 1;
+        r++;
         int mid2 = mid;
         if (mid != lens - 1) {
-          while (((arr[mid] + 1)) == value) {
-            r += 1;
-            mid += 1;
+          while (((arr[mid + 1])) == value) {
+            r++;
+            mid++;
           }
         }
         if (mid2) {
-          while ((arr[mid2] - 1) == value) {
-            r += 1;
-            mid2 -= 1;
+          while ((arr[mid2 - 1]) == value) {
+            r++;
+            mid2--;
             if (mid2 == 0) break;
           }
         }
@@ -30,30 +30,35 @@ int binarniypoisk(int* arr, int lens, int value) {
     return r;
 }
 
-int countPairs1(int* arr, int len, int value) {
-int count = 0;
-for (int i = 0; i < len - 1; i++) {
-for (int j = i + 1; j < len; j++) {
-if (*(arr + i) + *(arr + j) == value) count += 1;
-}
-}
-return count;
+int countPairs1(int *arr, int len, int value) {
+  int count = 0;
+  for (int i = 0; i < len-1; i++) {
+    for (int j = i + 1; j < len; j++) {
+      if (arr[i] + arr[j] == value)
+          count++;
+    }
+  }
+    return count;
 }
 
 int countPairs2(int* arr, int len, int value) {
-int count = 0;
-int j;
-for (int i = 0; i < len - 1; i++) {
-for (j = i + 1; j < len && arr[i] + arr[j] <= value; j++)
-if (*(arr + i) + *(arr + j) == value) count += 1;
-if (j - i == 1 && *(arr + j) + *(arr + i) > value) return count;
-}
-return count;
+    int count = 0;
+    int j, i;
+    for (int i = 0; i < len - 1; i++) {
+      for (int j = len - 1; j > i; j--) {
+        if (arr[i] + arr[j] == value)
+            count++;
+      }
+      if (j - i == 1 && ((arr[j] + arr[i]) > value)) return count;
+    }
+    return count;
 }
 
+
+
 int countPairs3(int* arr, int len, int value) {
-int count = 0;
-for (int i = 0; i < len - 1 && arr[i] <= value; i++)
-count += binarniypoisk(arr + i + 1, len - i - 1, value - arr[i]);
-return count;
+    int count = 0;
+    for (int i = 0; i < len - 1 && arr[i] <= value; i++)
+      count += binarniypoisk(arr + i + 1, len - i - 1, value - arr[i]);
+    return count;
 }
